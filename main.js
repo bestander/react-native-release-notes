@@ -84,38 +84,38 @@ function classifyCommits(commits) {
     var messageTitle = item.commit.message.split('\n\n')[0];
     var commitUrl = item.html_url;
 
-    if (messageTitle.toLowerCase().indexOf('ios') !== -1) {
-      if (messageTitle.toLowerCase().indexOf('add') !== -1) {
+    if (messageTitle.toLowerCase().search(/ios|RCT'/) !== -1) {
+      if (messageTitle.toLowerCase().search('add') !== -1) {
         // ios feature
         draft.ios.features.push('- ' + messageTitle + ' - ' + commitUrl);
-      } else if (messageTitle.toLowerCase().indexOf('fix') !== -1) {
+      } else if (messageTitle.toLowerCase().search('fix') !== -1) {
         // ios bug fix
         draft.ios.bugs.push('- ' + messageTitle + ' - ' + commitUrl);
       }
 
-    } else if (messageTitle.toLowerCase().indexOf('android') !== -1) {
-      if (messageTitle.toLowerCase().indexOf('add') !== -1) {
+    } else if (messageTitle.toLowerCase().search(/android|java/) !== -1) {
+      if (messageTitle.toLowerCase().search('add') !== -1) {
         // android feature
         draft.android.features.push('- ' + messageTitle + ' - ' + commitUrl);
-      } else if (messageTitle.toLowerCase().indexOf('fix') !== -1) {
+      } else if (messageTitle.toLowerCase().search('fix') !== -1) {
         // android bug fix
         draft.android.bugs.push('- ' + messageTitle + ' - ' + commitUrl);
       }
 
-    } else if (messageTitle.toLowerCase().indexOf('packager') !== -1) {
-      if (messageTitle.toLowerCase().indexOf('add') !== -1) {
+    } else if (messageTitle.toLowerCase().search('packager') !== -1) {
+      if (messageTitle.toLowerCase().search('add') !== -1) {
         // core feature
         draft.core.features.push('- ' + messageTitle + ' - ' + commitUrl);
-      } else if (messageTitle.toLowerCase().indexOf('fix') !== -1) {
+      } else if (messageTitle.toLowerCase().search('fix') !== -1) {
         // core bug fix
         draft.core.bugs.push('- ' + messageTitle + ' - ' + commitUrl);
       }
 
     } else {
-      if (messageTitle.toLowerCase().indexOf('add') !== -1) {
+      if (messageTitle.toLowerCase().search('add') !== -1) {
         // other feature
         draft.other.features.push('- ' + messageTitle + ' - ' + commitUrl);
-      } else if (messageTitle.toLowerCase().indexOf('fix') !== -1) {
+      } else if (messageTitle.toLowerCase().search('fix') !== -1) {
         // other bug fix
         draft.other.bugs.push('- ' + messageTitle + ' - ' + commitUrl);
       }

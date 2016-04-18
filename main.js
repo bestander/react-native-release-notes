@@ -84,6 +84,10 @@ function classifyCommits(commits) {
     var messageTitle = item.commit.message.split('\n\n')[0];
     var commitUrl = item.html_url;
 
+    if (messageTitle.toLowerCase().search('showcase') !== -1) {
+      return;
+    }
+
     if (messageTitle.toLowerCase().search(/ios|RCT'/) !== -1) {
       if (messageTitle.toLowerCase().search('add') !== -1) {
         // ios feature
